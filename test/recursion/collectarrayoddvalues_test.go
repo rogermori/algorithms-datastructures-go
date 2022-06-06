@@ -5,15 +5,20 @@ import (
 	"testing"
 )
 
-func Test_should_return_array_including_1_when_array_only_contains_1(t *testing.T) {
-	intList := []int{1}
-	oddList := recursion.CollectOddValues(intList)
-	if len(oddList) != 1 {
-		t.Logf("expected [1] but resulted %v\n", oddList)
+func Test_should_return_array_including_13_when_array_contains_123(t *testing.T) {
+	intList := []int{1, 2, 3}
+	oddList := recursion.CollectOddValuesWithHelperFunction(intList)
+	t.Logf("%v\n", oddList)
+
+	oddList1 := recursion.CollectOddValuesPure(intList)
+	t.Logf("%v\n", oddList1)
+
+	if oddList[0] != 1 || oddList[1] != 3 {
+		t.Logf("[helper] expected [1,3] , resulted %v\n", oddList)
 		t.Fail()
 	}
-	if oddList[0] != 1 {
-		t.Logf("expected 1 but resulted %v\n", oddList[0])
+	if oddList1[0] != 1 || oddList1[1] != 3 {
+		t.Logf("[pure] expected [1,3] , resulted %v\n", oddList)
 		t.Fail()
 	}
 
